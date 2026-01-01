@@ -1,0 +1,306 @@
+/* =========================
+   RESET + VARIABLES
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #121417;
+    --card: #1E1F26;
+    --text: #E0E0E0;
+    --muted: #999999;
+    --primary: #4A90E2;
+    --primary-dark: #357ABD;
+    --accent: #00BCD4;
+    --shadow: 0 4px 12px rgba(0,0,0,0.5);
+    --completed: #2E7D32;
+    --in-progress: #FFA726;
+    --danger: #ff5f5f;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* =========================
+   TARJETA DE PERFIL (Mini y Esquina)
+========================= */
+#profile-card {
+    position: fixed !important;
+    top: 15px;
+    left: 15px;
+    width: 150px !important; /* Más pequeña */
+    padding: 10px !important;
+    background: var(--card) !important;
+    border: 1px solid #333 !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow) !important;
+    z-index: 1000;
+}
+
+/* Botón X de cerrar sesión (Cuadrado y pequeño) */
+#logout-btn {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--muted) !important;
+    border: 1px solid #444 !important;
+    border-radius: 4px !important; /* Cuadrado */
+    font-size: 10px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: all 0.2s;
+}
+
+#logout-btn:hover {
+    background: var(--danger) !important;
+    color: white !important;
+    border-color: var(--danger) !important;
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+#main-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================
+   BOTONES
+========================= */
+button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--primary);
+    color: #FFFFFF;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s;
+}
+
+button:hover { background-color: var(--primary-dark); }
+button:active { transform: translateY(1px); box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+/* Botón Estudiar (Más pequeño y discreto) */
+.study-button {
+    width: auto !important; /* No ocupa todo el ancho */
+    padding: 4px 10px !important;
+    font-size: 12px !important;
+    background: #2A2B33 !important;
+    color: var(--muted) !important;
+    border: 1px solid #444 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+}
+
+.study-button:hover {
+    background: #3a3b45 !important;
+    color: var(--text) !important;
+}
+
+/* =========================
+   LISTA DE LECCIONES
+========================= */
+.lesson-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 0.8rem;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.lesson-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lesson-btn {
+    flex: 1;
+    margin: 0 !important;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Estados de lección */
+button.completed {
+    background: var(--completed);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(46, 204, 113, 0.3);
+}
+
+button.in-progress {
+    background: var(--in-progress);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(243, 156, 18, 0.3);
+}
+
+/* =========================
+   LECCIONES BLOQUEADAS
+========================= */
+.lesson-row.locked {
+    background: rgba(40, 40, 50, 0.6) !important;
+    border: 1px dashed #555;
+    filter: grayscale(0.8);
+    box-shadow: none;
+    cursor: not-allowed;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.lesson-btn.locked {
+    background: #2a2c35 !important;
+    color: #888 !important;
+    pointer-events: none;
+    box-shadow: none !important;
+}
+
+/* Animación de "shake" al intentar clicar bloqueado */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.shake-animation {
+    animation: shake 0.4s ease;
+}
+
+/* =========================
+   TRANSICIONES Y DETALLES
+========================= */
+.lesson-row, .lesson-btn {
+    transition: all 0.3s ease;
+}
+
+.lesson-btn:hover:not(.locked) {
+    filter: brightness(1.1);
+}
+
+/* Iconos de estado opcionales */
+.lesson-row.completed::after {
+    content: "✓";
+    font-weight: bold;
+    color: #2ecc71;
+    margin-left: 0.5rem;
+}
+
+.lesson-row.in-progress::after {
+    content: "⏳";
+    margin-left: 0.5rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+    .lesson-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .lesson-btn {
+        width: 100%;
+        margin-top: 0.4rem;
+    }
+
+    #profile-card {
+        width: 120px !important;
+        padding: 8px !important;
+        font-size: 12px;
+    }
+}
+/* Contenedor superior: botón de volver + perfil */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    position: relative; /* Para poder controlar z-index de hijos */
+    gap: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Botón de volver */
+.back-button {
+    z-index: 2; /* Siempre encima del perfil */
+    background: var(--card);
+    border: none;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Perfil */
+#profile-card {
+    z-index: 1; /* Debajo del botón de volver */
+    width: 140px;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--card);
+    text-align: center;
+    flex-shrink: 0; /* No se achique demasiado */
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column; /* Apilamos verticalmente */
+        align-items: stretch;
+        gap: 0.4rem;
+    }
+
+    .back-button {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+
+    #profile-card {
+        width: 100%; /* También ancho completo */
+        order: 2; /* Perfil debajo del botón */
+    }
+}
