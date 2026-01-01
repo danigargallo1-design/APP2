@@ -304,3 +304,19 @@ button.in-progress {
         order: 2; /* Perfil debajo del botón */
     }
 }
+/* Quitar el borde azul al pulsar botones en móvil */
+button,
+.lesson-btn,
+.back-button,
+#profile-card {
+    outline: none; /* Elimina el recuadro azul/por defecto */
+    -webkit-tap-highlight-color: transparent; /* iOS / Android Chrome */
+}
+
+/* Opcional: efecto de foco más bonito para accesibilidad */
+button:focus,
+.lesson-btn:focus,
+.back-button:focus {
+    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.4); /* resalta suavemente */
+}
+
