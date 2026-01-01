@@ -304,19 +304,30 @@ button.in-progress {
         order: 2; /* Perfil debajo del botón */
     }
 }
-/* Quitar el borde azul al pulsar botones en móvil */
+/* ===== Respuestas: correctas o incorrectas ===== */
+.lesson-btn.correct {
+    background: #2ecc71 !important; /* verde */
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3) !important;
+}
+
+.lesson-btn.wrong {
+    background: #e74c3c !important; /* rojo */
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* ===== Botones generales ===== */
 button,
 .lesson-btn,
-.back-button,
-#profile-card {
-    outline: none; /* Elimina el recuadro azul/por defecto */
-    -webkit-tap-highlight-color: transparent; /* iOS / Android Chrome */
+.back-button {
+    outline: none; /* Quita el borde azul predeterminado */
+    -webkit-tap-highlight-color: transparent; /* Quita efecto táctil azul en móvil */
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
 }
 
-/* Opcional: efecto de foco más bonito para accesibilidad */
-button:focus,
-.lesson-btn:focus,
-.back-button:focus {
-    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.4); /* resalta suavemente */
+/* Hover y focus solo si NO tiene estado correct/wrong */
+.lesson-btn:not(.correct):not(.wrong):hover,
+.lesson-btn:not(.correct):not(.wrong):focus {
+    filter: brightness(1.1);
 }
-
