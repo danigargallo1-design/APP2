@@ -1635,20 +1635,20 @@ function showNameInput() {
         box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         text-align: center;
         margin-top: 20px;
-        border: 2px solid #4caf50;
+        border: 2px solid #3584d4ff;
         animation: fadeIn 0.5s ease;
     `;
 
     inputCard.innerHTML = `
-        <h2 style="color: #4caf50; margin-bottom: 15px;">¡Hola! 👋</h2>
+        <h2 style="color: #3584d4ff; margin-bottom: 15px;">¡Hola!</h2>
         <p style="color: #666; margin-bottom: 20px;">¿Cómo te llamas? Tu progreso se guardará automáticamente.</p>
         <input type="text" id="name-field" placeholder="Escribe tu nombre..." 
             style="width: 80%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 1rem;">
         <br><br>
         <button id="start-btn" style="
-            background: #4caf50; color: white; border: none; padding: 12px 30px; 
+            background: #3584d4ff; color: white; border: none; padding: 12px 30px; 
             border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">
-            Empezar Aventura
+            Empezar
         </button>
     `;
 
