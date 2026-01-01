@@ -304,7 +304,7 @@ button.in-progress {
         order: 2; /* Perfil debajo del botón */
     }
 }
-/* ===== Respuestas correctas e incorrectas ===== */
+/* ===== RESPUESTAS CORRECTAS / INCORRECTAS ===== */
 .lesson-btn.correct {
     background-color: #2ecc71 !important; /* verde */
     color: #fff !important;
@@ -317,16 +317,15 @@ button.in-progress {
     box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3) !important;
 }
 
-/* ===== Botones generales ===== */
+/* ===== BOTONES GENERALES ===== */
 .lesson-btn {
-    /* solo estilos base que no interfieran con correct/wrong */
     padding: 0.5rem 0.8rem;
     border-radius: 12px;
     border: none;
     font-weight: 500;
     transition: transform 0.2s, box-shadow 0.2s;
-    outline: none; /* quitar azul al pulsar */
-    -webkit-tap-highlight-color: transparent; /* móvil */
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Hover / focus solo si NO está marcado como correct/wrong */
@@ -335,6 +334,13 @@ button.in-progress {
     filter: brightness(1.1);
     cursor: pointer;
 }
+
+/* Feedback táctil */
+.lesson-btn:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+
 /* =========================
    QUITAR CUADROS AZULES / TAP HIGHLIGHT GLOBAL
 ========================= */
@@ -369,4 +375,30 @@ select:active,
 summary:active {
     transform: scale(0.97); /* efecto de “apretado” */
     transition: transform 0.1s ease;
+}
+/* =========================
+   FIX: FEEDBACK DE RESPUESTAS
+========================= */
+
+/* Forzamos que el verde y rojo manden sobre el azul base */
+button.correct {
+    background-color: #2ecc71 !important;
+    color: white !important;
+}
+
+button.wrong {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+/* Opcional: Desactivar el hover cuando ya se ha marcado la respuesta */
+button.correct:hover, button.wrong:hover {
+    background-color: inherit;
+    cursor: default;
+    transform: none;
+}
+* {
+    box-sizing: border-box;
+    /* Quita el recuadro azul/gris al pulsar en móviles */
+    -webkit-tap-highlight-color: transparent;
 }
