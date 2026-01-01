@@ -304,30 +304,34 @@ button.in-progress {
         order: 2; /* Perfil debajo del botón */
     }
 }
-/* ===== Respuestas: correctas o incorrectas ===== */
+/* ===== Respuestas correctas e incorrectas ===== */
 .lesson-btn.correct {
-    background: #2ecc71 !important; /* verde */
+    background-color: #2ecc71 !important; /* verde */
     color: #fff !important;
     box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3) !important;
 }
 
 .lesson-btn.wrong {
-    background: #e74c3c !important; /* rojo */
+    background-color: #e74c3c !important; /* rojo */
     color: #fff !important;
     box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3) !important;
 }
 
 /* ===== Botones generales ===== */
-button,
-.lesson-btn,
-.back-button {
-    outline: none; /* Quita el borde azul predeterminado */
-    -webkit-tap-highlight-color: transparent; /* Quita efecto táctil azul en móvil */
-    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+.lesson-btn {
+    /* solo estilos base que no interfieran con correct/wrong */
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+    outline: none; /* quitar azul al pulsar */
+    -webkit-tap-highlight-color: transparent; /* móvil */
 }
 
-/* Hover y focus solo si NO tiene estado correct/wrong */
+/* Hover / focus solo si NO está marcado como correct/wrong */
 .lesson-btn:not(.correct):not(.wrong):hover,
 .lesson-btn:not(.correct):not(.wrong):focus {
     filter: brightness(1.1);
+    cursor: pointer;
 }
