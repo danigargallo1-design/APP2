@@ -335,3 +335,38 @@ button.in-progress {
     filter: brightness(1.1);
     cursor: pointer;
 }
+/* =========================
+   QUITAR CUADROS AZULES / TAP HIGHLIGHT GLOBAL
+========================= */
+
+/* Aplica a todos los elementos interactivos */
+button,
+a,
+input,
+textarea,
+select,
+summary {
+    outline: none; /* elimina el borde azul de foco */
+    -webkit-tap-highlight-color: transparent; /* quita highlight en Chrome/iOS/Android */
+}
+
+/* Opcional: foco accesible suave para teclado */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+summary:focus {
+    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.4); /* resalta suavemente sin ser intrusivo */
+}
+
+/* Feedback táctil global */
+button:active,
+a:active,
+input:active,
+textarea:active,
+select:active,
+summary:active {
+    transform: scale(0.97); /* efecto de “apretado” */
+    transition: transform 0.1s ease;
+}
