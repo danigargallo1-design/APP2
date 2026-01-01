@@ -1728,14 +1728,48 @@ function renderCardContent(card) {
     `;
 
     const btn = document.getElementById('logout-btn');
+    
+    // Estilos hover (mantengo los tuyos)
     btn.onmouseover = () => { btn.style.background = '#ff5f5f'; btn.style.color = 'white'; btn.style.borderColor = '#ff5f5f'; };
     btn.onmouseout = () => { btn.style.background = '#eee'; btn.style.color = '#999'; btn.style.borderColor = '#ddd'; };
 
+    // --- NUEVA LÓGICA DE CONFIRMACIÓN ---
     btn.onclick = () => {
-        if (confirm("¿Cerrar sesión y borrar datos?")) {
+        // Creamos el contenedor del modal
+        const overlay = document.createElement('div');
+        overlay.style = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: flex; align-items: center;
+            justify-content: center; z-index: 9999; font-family: sans-serif;
+        `;
+
+        overlay.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 8px; width: 280px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                <div style="font-weight: bold; margin-bottom: 10px; color: #333;">¿Cerrar sesión?</div>
+                <div style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Se borrarán todos tus datos de progreso permanentemente.</div>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button id="modal-cancel" style="padding: 8px 15px; border: none; background: #eee; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Cancelar</button>
+                    <button id="modal-confirm" style="padding: 8px 15px; border: none; background: #ff5f5f; color: white; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">Borrar todo</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Lógica de los botones del modal
+        overlay.querySelector('#modal-cancel').onclick = () => {
+            document.body.removeChild(overlay); // Cerramos el modal
+        };
+
+        overlay.querySelector('#modal-confirm').onclick = () => {
             localStorage.clear();
             location.reload();
-        }
+        };
+
+        // Cerrar también si hacen clic fuera del cuadrito blanco
+        overlay.onclick = (e) => {
+            if (e.target === overlay) document.body.removeChild(overlay);
+        };
     };
 }
 
